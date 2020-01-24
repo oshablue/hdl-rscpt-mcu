@@ -1,5 +1,7 @@
 /**
- * Please see comments in main.c or in a readme.md if included or at oshablue.com
+ * Please see README.md and LICENSE
+ *
+ * Copyright 2020 oshablue / nisch s. except where otherwise noted
  */
 
 #include "commands.h"

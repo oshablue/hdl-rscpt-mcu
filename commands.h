@@ -1,11 +1,7 @@
 /**
- * Please see comments in main.c or in a readme.md if included or at oshablue.com
- */
-/* 
- * File:   commands.h
- * Author: nisch
+ * Please see README.md and LICENSE
  *
- * Created on December 4, 2019, 1:53 PM
+ * Copyright 2020 oshablue / nisch s. except where otherwise noted
  */
 
 #ifndef COMMANDS_H
@@ -25,7 +21,7 @@
  * [10] PARAM1 LSB
  * [11] PARAM2 MSB
  * [12] PARAM2 LSB
- * [13 THROUGH 16-BIT MAX - 8] 
+ * [13 THROUGH 16-BIT MAX - 8]
  * [13 OR 13 + (LEN - 8)] STOP BYTE (MINIMUM LENGTH IS AT INDEX 13 FOR STOP BYTE)
  */
 
@@ -153,4 +149,3 @@ extern "C" {
 #endif
 
 #endif	/* COMMANDS_H */
-
