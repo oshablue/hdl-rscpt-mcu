@@ -39,8 +39,18 @@ void resetWaveformSequenceCount(void) {
     // is to the hardware capture controller
     // and is RC3 output from this MCU to that controller.
     // Active low means it idles high, and to reset, set it low.
+    
+    // This can be used, however channel reset sequence using this at the end of 
+    // max channel number reached in main is glitchy with the current CapChip 
+    // timing.  So, separating these as is implemented in the current main
+    // timer function (always starts with setting reset high = inactive)
+    // and only setting it low at the end of the capture trigger cycle 
+    // and only if the max channel reset sequence is needed is a reasonable 
+    // work around
 
     IO_RC3_SetLow();
+    //NOP();  // 16 MHz => 62.5 ns / cycle ish?
+    //NOP();
     IO_RC3_SetHigh();
 }
 

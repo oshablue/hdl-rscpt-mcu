@@ -300,6 +300,11 @@ void myTimer2ISR(void) {
  */
 void myTimer0ISR(void) {
     
+    // Work around for CapChip timing implementation
+    // Testing reset to high always - only matters if was previously 
+    // set to Low for active low reset for sequence count reset
+    IO_RC3_SetHigh();
+    
     // TODOLT MINOR/FUTURE could track Tx (pulse) channel and thus
     // only toggle the TSD signal for that particular corresponding
     // channel
@@ -437,7 +442,9 @@ void myTimer0ISR(void) {
         if ( g_currentRxChan > NUM_RX_CHANNELS ) {
             g_currentRxChan = 1;
             g_currentTxChan = 1;
-            resetWaveformSequenceCount();
+            //resetWaveformSequenceCount(); // Cleaner without this imlementation
+            // Cleaner with this implementation:
+            IO_RC3_SetLow();
         }
     }
     
