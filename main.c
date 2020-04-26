@@ -304,6 +304,11 @@ void myTimer0ISR(void) {
     // Testing reset to high always - only matters if was previously 
     // set to Low for active low reset for sequence count reset
     IO_RC3_SetHigh();
+    // For the case where the reset signal is only used for channel seq count 
+    // reset, and the pulse sequence capture is not yet sync'd on the CapChip 
+    // we are trying now to keep this signal low through the trigger setup and
+    // PAQ sequence by moving the above call to the end of trig seq channel # 
+    // check and/if reset 
     
     // TODOLT MINOR/FUTURE could track Tx (pulse) channel and thus
     // only toggle the TSD signal for that particular corresponding
@@ -432,6 +437,13 @@ void myTimer0ISR(void) {
     
     // Now blank (turn off) the SSRs to minimize noise into the Rx waveform
     SSR_TSD_ALL_OFF;
+    
+    
+    // See note above (high above within this function), regarding 
+    // moving this here for an active low possibility through out the whole 
+    // trig sequence thus creating a state versus and edge for chan seq reset
+    //IO_RC3_SetHigh();
+    // Update: using a diff CapChip implementation to capture an edge again 
     
     
     // Now any variable timing functionality at the end of the ISR
